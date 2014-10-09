@@ -53,11 +53,16 @@ module Piniouz
     end
 
     def format_context(pins)
-      categories = pins.to_a.map do |(cat_id, pins)|
-        {
-          'name' => self.conf['cat_tags'][cat_id],
-          'pins' => pins.map(&:to_hash)
-        }
+      categories = [ ]
+
+      # @todo This is so bad to rely on ordering of a hash... but I am so lazy right now
+      self.conf['cat_tags'].keys.each do |cat_id|
+        if pins[cat_id]
+          categories << {
+            'name' => self.conf['cat_tags'][cat_id],
+            'pins' => pins[cat_id].map(&:to_hash),
+          }
+        end
       end
 
       {
