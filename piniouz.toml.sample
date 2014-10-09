@@ -1,0 +1,22 @@
+[newsletter]
+name = "Planet Williams"
+short_preview = "Your weekly worldwide news about Williams Syndrome"
+website = "http://www.planet-williams.org"
+facebook = "https://www.facebook.com/planetwilliamssyndrome"
+twitter = "https://twitter.com/PlanetWilliams_"
+author = "Aymerick"
+author_twitter = "aymerick"
+
+[pinboard]
+username = "aymerick"
+auth_token = "..."
+master_tag = "pw-news"
+default_cat_tag = "misc"
+
+[pinboard.cat_tags]
+asso  = "New associations"
+doc   = "Documentation"
+med   = "Medical / Scientific"
+local = "Local meetings"
+event = "Events"
+misc  = "Miscelaneous"
