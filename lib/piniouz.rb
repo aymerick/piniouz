@@ -65,7 +65,7 @@ module Piniouz
       opt_parser = OptionParser.new do |opts|
         opts.banner = "Usage: piniouz [-nch] <command>"
 
-        opts.define_head "Creating mailchimp newsletters with pinboard."
+        opts.define_head "Creating weekly newsletters with pinboard and mailchimp."
 
         opts.on("-n", "--newsletter", "Newsletter id (default: #{args[:newsletter]})") do |value|
           args[:newsletter] = argv[1]

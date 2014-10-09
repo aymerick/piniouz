@@ -1,7 +1,7 @@
 Piniouz
 =======
 
-Creating mailchimp newsletters with pinboard.
+Creating weekly newsletters with pinboard and mailchimp.
 
 The mail design is inspired by <http://emberweekly.com>.
 

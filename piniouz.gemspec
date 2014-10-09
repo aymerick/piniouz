@@ -6,7 +6,7 @@ spec = Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.summary     = "Piniouz"
   s.description = <<-EOF
-  Creating mailchimp newsletters with pinboard.
+  Creating weekly newsletters with pinboard and mailchimp.
   EOF
 
   s.author   = "Aymerick JEHANNE"
