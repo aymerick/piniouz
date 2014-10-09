@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+
+require 'rubygems'
+require 'pp'
+
+$:.unshift File.expand_path(File.dirname(__FILE__) + "/../lib")
+require 'piniouz'
+
+# parse arguments
+args = Piniouz.parse_args!(ARGV)
+
+# get value
+command = args.delete(:command)
+Piniouz.run(command, args)
