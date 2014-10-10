@@ -786,6 +786,10 @@
         word-wrap: break-word !important;
       }
 
+      .pins .origin a, .pins .origin a:hover {
+        color: #808080 !important;
+      }
+
       .callout {
         margin-bottom: 20px;
       }
@@ -906,8 +910,8 @@
                                 <h1>{{name}}</h1>
                                 {{#pins}}
                                   <div class="pin">
-                                    <h2><a href="{{url}}">{{title}}</a></2>
-                                    <p class="origin">{{origin}}</p>
+                                    <h2><a href="{{url}}">{{title}}</a></h2>
+                                    <p class="origin"><a href="{{url}}">{{origin}}</a></p>
                                     <p class="desc">{{description}}</p>
                                   </div>
                                 {{/pins}}
@@ -982,9 +986,9 @@
                                 <p>
                                   <em>Copyright © *|CURRENT_YEAR|* *|LIST:COMPANY|*, All rights reserved.</em><br>
                                   <br>
-                                  *|IFNOT:ARCHIVE_PAGE|* *|LIST:DESCRIPTION|*<br>
+                                  *|IFNOT:ARCHIVE_PAGE|* *|LIST:DESCRIPTION|* *|END:IF|*<br>
                                   <br>
-                                  <a class="utilityLink" href="*|UNSUB|*">unsubscribe from this list</a>&nbsp;&nbsp;&nbsp; <a class="utilityLink" href="*|UPDATE_PROFILE|*">update  subscription preferences</a>&nbsp;<br>
+                                  <a href="*|UNSUB|*">unsubscribe from this list</a>&nbsp;&nbsp;&nbsp; <a href="*|UPDATE_PROFILE|*">update subscription preferences</a>&nbsp;<br>
                                   <br>
                                   *|IF:REWARDS|* *|HTML:REWARDS|* *|END:IF|*
                                 </p>
