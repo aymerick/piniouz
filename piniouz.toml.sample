@@ -14,12 +14,12 @@ master_tag      = "pw-news"
 default_cat_tag = "misc"
 
 [pinboard.cat_tags]
-asso  = "New associations"
-doc   = "Documentation"
-med   = "Medical / Scientific"
-local = "Local meetings"
-event = "Events"
-misc  = "Miscelaneous"
+pw-asso  = "New associations"
+pw-doc   = "Documentation"
+pw-med   = "Medical / Scientific"
+pw-local = "Local meetings"
+pw-event = "Events"
+pw-misc  = "Miscelaneous"
 
 [mailchimp]
 api_key = "..."
