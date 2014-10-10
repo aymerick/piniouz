@@ -15,12 +15,24 @@ module Piniouz
       @api ||= ::Gibbon::API.new(self.conf['api_key'])
     end
 
-    # get last campaign infos
-    def last_campaign
-      # @todo !!!
-      raise "not implemented"
+    # fetch last campaign
+    def fetch_last_campaign
+      response = self.api.campaigns.list({
+        :filters => {
+          :list_id => self.conf['campaign_options']['list_id'],
+        },
+        :start => 0,
+        :limit => 1,
+        :sort_field => 'send_time',
+        :sort_dir => 'DESC',
+      })
+
+      raise "Failed to fetch last mailchimp campaign: #{response.inspect}" if (response['status'] == 'error')
+
+      (response['total'] == 1) ? response['data'].first : nil
     end
 
+    # create new campaign
     def create_campaign(subject, html)
       Piniouz.log("Creating mailchimp campaign: #{subject}")
 

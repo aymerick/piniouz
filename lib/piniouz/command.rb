@@ -1,3 +1,5 @@
+require 'time'
+
 module Piniouz
 
   class Command
@@ -15,18 +17,60 @@ module Piniouz
       self.__send__(self.name)
     end
 
+    def compute_anchor!(last_campaign = nil)
+      # use last_campaign as an anchor
+      last_create_time = last_campaign ? Time.parse(last_campaign['create_time']) : nil
+
+      Piniouz.log("Last newsletter created at: #{last_create_time}")
+
+      now = Time.now.utc
+      last_week  = now - (60 * 60 * 24 * 7)
+
+      # compute anchor
+      anchor = last_create_time || last_week
+
+      one_month = (60 * 60 * 24 * 7 * 31)
+      if (now - anchor) > one_month
+        # don't go too far in the past
+        anchor = now - one_month
+
+        puts "WARNING: last mail was sent more than one month ago... so this one will be a monthly newsletter"
+      end
+
+      raise "\n\nERROR: Previous newsletter was sent less than a week ago: #{anchor}\n\n" if (anchor > last_week)
+
+      anchor
+    end
+
+    def compute_issue_number(last_campaign = nil)
+      if !last_campaign
+        1
+      else
+        /#.+$/.match(last_campaign['subject'])[0].gsub('#', '').to_i + 1
+      end
+    end
+
     # create newsletter
     def create
       Piniouz.log("Creating newsletter: #{self.options.inspect}")
 
+      # fetch last campaign
+      mailchimp = Mailchimp.new(self.conf_file['mailchimp'])
+      last_campaign = mailchimp.fetch_last_campaign
+
+      Piniouz.log("Last campaign: #{last_campaign.inspect}")
+
+      # compute anchor
+      anchor = self.compute_anchor!(last_campaign)
+
       # fetch pinboard feeds
       pinboard = Pinboard.new(self.conf_file['pinboard'])
-      pins = pinboard.fetch_pins
+      pins = pinboard.fetch_pins(anchor)
 
       Piniouz.log("Fetched pins: #{pins.inspect}")
 
       if pins.size == 0
-        puts "No new pins since #{pinboard.anchor}"
+        puts "No new pins"
       else
         # build newsletter HTML
         template = Template.new({ })
@@ -36,11 +80,7 @@ module Piniouz
         Piniouz.log("html: #{html}")
 
         # create newsletter on mailchimp
-        mailchimp = Mailchimp.new(self.conf_file['mailchimp'])
-
-        # @todo Concatenate self.conf_file['newsletter']['name'] with new campaign number (and so check mailchimp.last_campaign)
-        subject = "@todo"
-
+        subject = "#{self.conf_file['newsletter']['name']} Weekly ##{self.compute_issue_number(last_campaign)}"
         mailchimp.create_campaign(subject, html)
       end
     end

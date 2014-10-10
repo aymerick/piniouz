@@ -17,22 +17,15 @@ module Piniouz
       @client ||= ::Pinboard::Client.new(:token => "#{self.conf['username']}:#{self.conf['auth_token']}")
     end
 
-    def anchor
-      # @todo Check previous saved anchor
-
-      # one week ago
-      @anchor ||= Time.now.utc - (60 * 60 * 24 * 7)
-    end
-
     # Returns a Hash: { '<tag>': [ <pin>, <pin>...], ... }
-    def fetch_pins
+    def fetch_pins(anchor)
       result = { }
 
-      Piniouz.log("Fetching pins from pinboard api")
+      Piniouz.log("Fetching new pinboard pins since #{anchor}")
 
       posts = self.client.posts({
         :tag    => "#{self.conf['master_tag']}",
-        :fromdt => self.anchor,
+        :fromdt => anchor,
       })
 
       category_tags = self.conf['cat_tags'].keys
