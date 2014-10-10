@@ -97,7 +97,7 @@ module Piniouz
     end
 
     def log(msg)
-      puts "[piniouz] #{msg}"
+      # puts "[piniouz] #{msg}"
     end
 
     # run command
