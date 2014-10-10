@@ -70,7 +70,7 @@ module Piniouz
       Piniouz.log("Fetched pins: #{pins.inspect}")
 
       if pins.size == 0
-        puts "No new pins"
+        puts "No new pins since #{anchor}"
       else
         # build newsletter HTML
         template = Template.new({ })
