@@ -35,7 +35,13 @@ module Piniouz
         html = template.build(ctx)
         Piniouz.log("html: #{html}")
 
-        # @todo create newsletter on mailchimp
+        # create newsletter on mailchimp
+        mailchimp = Mailchimp.new(self.conf_file['mailchimp'])
+
+        # @todo Concatenate self.conf_file['newsletter']['name'] with new campaign number (and so check mailchimp.last_campaign)
+        subject = "@todo"
+
+        mailchimp.create_campaign(subject, html)
       end
     end
 

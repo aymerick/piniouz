@@ -3,6 +3,7 @@ require 'optparse'
 require 'toml'
 
 require 'piniouz/command'
+require 'piniouz/mailchimp'
 require 'piniouz/pin'
 require 'piniouz/pinboard'
 require 'piniouz/template'

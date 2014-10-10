@@ -1,16 +1,16 @@
 [newsletter]
-name = "Planet Williams"
-short_preview = "Your weekly worldwide news about Williams Syndrome"
-website = "http://www.planet-williams.org"
-facebook = "https://www.facebook.com/planetwilliamssyndrome"
-twitter = "https://twitter.com/PlanetWilliams_"
-author = "Aymerick"
+name           = "Planet Williams"
+short_preview  = "Your weekly worldwide news about Williams Syndrome"
+website        = "http://www.planet-williams.org"
+facebook       = "https://www.facebook.com/planetwilliamssyndrome"
+twitter        = "https://twitter.com/PlanetWilliams_"
+author         = "Aymerick"
 author_twitter = "aymerick"
 
 [pinboard]
-username = "aymerick"
-auth_token = "..."
-master_tag = "pw-news"
+username        = "aymerick"
+auth_token      = "..."
+master_tag      = "pw-news"
 default_cat_tag = "misc"
 
 [pinboard.cat_tags]
@@ -20,3 +20,15 @@ med   = "Medical / Scientific"
 local = "Local meetings"
 event = "Events"
 misc  = "Miscelaneous"
+
+[mailchimp]
+api_key = "..."
+
+[mailchimp.campaign_options]
+list_id       = "..."
+from_name     = "Planet Williams Weekly"
+from_email    = "contact@planet-williams.org"
+generate_text = true
+inline_css    = true
+auto_tweet    = true
+auto_fb_post  = [ ... ]

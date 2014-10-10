@@ -20,4 +20,6 @@ spec = Gem::Specification.new do |s|
   s.add_dependency("toml")
   s.add_dependency("pinboard")
   s.add_dependency("mustache")
+  s.add_dependency("gibbon")
+  s.add_dependency("launchy")
 end
