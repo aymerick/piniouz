@@ -3,6 +3,8 @@ Piniouz
 
 Creating weekly newsletters with pinboard and mailchimp.
 
+![Piniouz Logo](https://github.com/aymerick/piniouz/blob/master/piniouz.png?raw=true "Piniouz")
+
 The mail design is inspired by <http://emberweekly.com>.
 
 
